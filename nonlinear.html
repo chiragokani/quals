@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nonlinear acoustics</title>
+ <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">   
+</script>
+<script>
+window.MathJax = {
+  tex: {
+    tags: 'ams'
+  }
+};
+</script>
+  <style>
+    body {
+      margin: 20px;
+      background: linear-gradient(to bottom, #192a56, #b53471);
+      font-family: Arial, sans-serif;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      line-height: 1.5;
+    }
+
+    .textbox {
+      background-color: rgba(211, 211, 211, 0.98);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    nav {
+      background-color: #696969;
+      margin-bottom: 20px;
+    }
+
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+    }
+
+    nav ul li {
+      flex: 1;
+    }
+
+    nav ul li a {
+      display: block;
+      color: #fff;
+      text-decoration: none;
+      text-align: center;
+      padding: 10px;
+    }
+
+    nav ul li a:hover {
+      background-color: #555;
+    }
+  </style>
+
+};
+   <style>
+    .expandable-content {
+      display: none;
+      margin-top: 10px;
+    }
+    
+    .expandable-content.expanded {
+      display: block;
+    }
+    
+    .expandable-toggle {
+      cursor: pointer;
+      font: italic small-caps bold 12px/25px Georgia, serif;
+      color: #0000A0;
+    }
+  </style>
+  <script>
+    function toggleExpandableContent(id) {
+      var content = document.getElementById(id);
+      content.classList.toggle("expanded");
+    }
+  </script>
+
+</head>
+<body>
+  <nav>
+    <ul>
+	 <li><a href="index.html">Home</a></li>
+      <li><a href="physical.html">Physical acoustics</a></li>
+      <li><a href="ultrasonics.html">Ultrasonics</a></li>
+      <li><a href="nonlinear.html">Nonlinear acoustics</a></li>
+      <li><a href="math.html">Math</a></li>
+    </ul>
+  </nav>
+
+  <div class="textbox">
+    <h1>Nonlinear acoustics</h1>
+<p>This page is organized by the first and second halves of Dr. Hamilton's Nonlinear Acoustics class:</p>
+<ol>
+    <li><a href="#first">First half of Dr. Hamilton's class: linear lossy, nonlinear exact, nonlinear approximate, and Burgers equations</a></li>
+    <li><a href="#second">Second half of Dr. Hamilton's class: Rankine-Hugoniot relations, weak shock theory, radiation force, and acoustic streaming</a></li>
+</ol>	
+
+<p>I mainly refer to the two review guides I wrote for Dr. Hamilton's Nonlinear Acoustics course in spring 2023, linked below. These reviews skip over some applications of nonlinear acoustics (the parametric array, HIFU, phase conjugation, etc.), but they cover the major theoretical developments of the course. I have also included some additional (mostly conceptual) questions.</p>
+</div>
+
+
+<div class="textbox">
+<h2 id="first">First half of Dr. Hamilton's class: linear lossy, nonlinear exact, nonlinear approximate, and Burgers equations</h2>
+
+<p>The first half of the course is investigated in a Socratic method (similar to the physical acoustics page) <a href="https://cag170030.github.io/chirag/midterm_study_guide_questions.pdf" target="_blank" rel="noopener noreferrer">here</a>. The <a href="https://cag170030.github.io/chirag/midterm_study_guide_solutions.pdf" target="_blank" rel="noopener noreferrer">detailed solutions</a> are also available.</p>
+
+<p>Below are a few conceptual questions about the governing equations of nonlinear acoustics. Answering these questions may help acquire a bigger picture of nonlinear acoustics.</p>
+
+<ol>
+<li> What sort of wave motion does 
+\begin{equation}\label{first}
+\frac{\partial^2 p}{\partial x^2} - \frac{1}{c_0^2}\frac{\partial^2 p}{\partial t^2} = -\frac{\delta}{c_0^4} \frac{\partial^3 p}{\partial t^3}
+\end{equation}
+describe? Qualitatively describe the solutions to this wave equation. 
+<span class="expandable-toggle" onclick="toggleExpandableContent('1sol0')">[answer]</span>
+<div id="1sol0" class="expandable-content" style="color: #0000A0;">
+<p>  This is the linear wave equation with attenuation, where \(\delta\) is the so-called "diffusivity of sound." In retarded time, this wave equation can be transformed into a diffusion-type equation (except with space and time-flipped from the conventional diffusion equation). This means that in retarded time, the acoustic pressure diffuses in \(\tau\). For example, for a delta function at \(x=0\), the solution is a Gaussian in \(\tau\). <i>Also think about this evolution in terms of the attenuation coefficient \(\alpha = \delta \omega^2/2c_0^3\).</i></p>
+</div>
+</li>
+
+
+
+<li> How does 
+\begin{equation}\label{lossy}
+\frac{\partial p}{\partial x} = \frac{\delta}{2c_0^3}\frac{\partial^2 p}{\partial \tau^2}
+\end{equation}
+relate to equation (\ref{first})? Which of these two equations is invariant under the exchange \(t\mapsto -t\)? How can this time-reversal symmetry be consistent with the second law of thermodynamics? Resolve this paradox.
+<span class="expandable-toggle" onclick="toggleExpandableContent('1sol1')">[answer]</span>
+<div id="1sol1" class="expandable-content" style="color: #0000A0;">
+<p>Equation (\ref{lossy}) is derived from equation (\ref{first}) by making the substitution \((\eta x,t-x/c_0)\mapsto (x_1,\tau)\), where \(\eta\) is the acoustic Stokes number [See problem 1(j) of the <a href="https://cag170030.github.io/chirag/midterm_study_guide_questions.pdf" target="_blank" rel="noopener noreferrer">first review guide</a>]. The even derivative in \(\tau\) makes the second equation invariant under the exchange \( t\mapsto -t\), but this is an artificial manifestation of time-reversal symmetry, because the second equation is a progressive wave equation. Progressive wave equations describe disturbances that go in one direction as time increases, so by definition, progressive wave equations do not obey time-reversal symmetry. </p>
+</div>
+</li>
+
+<li> If the source condition is \(p(0,\tau) = \sin (\omega \tau)\), qualitatively describe the evolution of \(p(x,\tau)\), the solution of equation (\ref{lossy}). 
+<span class="expandable-toggle" onclick="toggleExpandableContent('1sol2')">[answer]</span>
+<div id="1sol2" class="expandable-content" style="color: #0000A0;">
+<p> \(p(x,\tau)\) will simply decrease in amplitude, but the waveform will not distort, since it only contains a single frequency.</p>
+</div>
+</li>
+  
+
+<li> What sort of wave motion does 
+\begin{equation}\label{nonlinear exact}
+\frac{\partial u}{\partial t} + (c+u)\frac{\partial u}{\partial x} = 0
+\end{equation} describe? Qualitatively describe its solutions. After whom are these solutions named? 
+<span class="expandable-toggle" onclick="toggleExpandableContent('1sol3')">[answer]</span>
+<div id="1sol3" class="expandable-content" style="color: #0000A0;">
+<p> This is the exact lossless nonlinear progressive wave equation. Comparison of this progressive wave equation to the linear lossless progressive wave equation suggests that these solutions, named after Poisson, travel faster if they have a larger amplitude, and slower if they have a smaller amplitude. Thus the Poisson solution generally hosts waveform-steepening. These solutions are valid up to the shock formation distance, \(\bar{x}\).</p>
+</div>
+</li>
+
+
+<li> What was Earnshaw's contribution to the solution of equation (\ref{nonlinear exact})?  
+<span class="expandable-toggle" onclick="toggleExpandableContent('1sol4')">[answer]</span>
+<div id="1sol4" class="expandable-content" style="color: #0000A0;">
+<p> Earnshaw matched the Poisson solution to a boundary condition.</p>
+</div>
+</li>
+
+
+<li> What is the name of the exact explicit solution of equation (\ref{nonlinear exact}) in terms of an infinite series of Bessel functions?
+<span class="expandable-toggle" onclick="toggleExpandableContent('1sol5')">[answer]</span>
+<div id="1sol5" class="expandable-content" style="color: #0000A0;">
+<p> This is Fubini solution.</p>
+
+
+<li> What is the relationship between
+\begin{equation}\label{nonlinear approximate}
+\frac{\partial u}{\partial x} = \frac{\beta}{c_0^2}u\frac{\partial u}{\partial \tau}
+\end{equation}
+and equation (\ref{nonlinear exact})?
+<span class="expandable-toggle" onclick="toggleExpandableContent('1sol6')">[answer]</span>
+<div id="1sol6" class="expandable-content" style="color: #0000A0;">
+<p>Equation (\ref{nonlinear approximate}) is the \(\mathcal{O}(\epsilon^2)\) approximation of equation (\ref{nonlinear exact}). </p>
+
+
+<li> If one has a solution \(p(x,\tau)\) or \(u(x,\tau)\) to a nonlinear wave equation, what is the first step in finding the shock-formation distance \(x_\text{sh}\)?
+<span class="expandable-toggle" onclick="toggleExpandableContent('1sol7')">[answer]</span>
+<div id="1sol7" class="expandable-content" style="color: #0000A0;">
+<p> Since a shock is where the slope of the waveform of the solution becomes infinite, the \(\tau\)-derivative of the solution should be set to infinity, i.e., \[\frac{\partial p}{\partial \tau}  = \infty,\quad \text{or}\quad \frac{\partial u}{\partial \tau}  = \infty\] </p>
+</div>
+</li>
+
+
+<li> What is the name and order \(\mathcal{O}\) of 
+\begin{equation}\label{Burgers}
+\frac{\partial p}{\partial x}- \frac{\delta}{2c_0^3}\frac{\partial^2 p}{\partial \tau^2}= \frac{\beta p}{\rho_0 c_0^3} \frac{\partial p}{\partial \tau}?
+\end{equation}
+How is this equation qualitatively related to equations (\ref{lossy})-(\ref{nonlinear approximate})? How does the Burgers equation of acoustics differ from the more widely known Burgers equation (found on <a href="https://en.wikipedia.org/wiki/Burgers%27_equation" target="_blank" rel="noopener noreferrer">Wikipedia</a>, for example)? What is the significance of the Burgers equation in nonlinear acoustics? 
+<span class="expandable-toggle" onclick="toggleExpandableContent('1sol8')">[answer]</span>
+<div id="1sol8" class="expandable-content" style="color: #0000A0;">
+<p> This is the Burgers equation, and it is \(\mathcal{O}(\epsilon^2)\). This equation can be thought of as a combination of equation (\ref{nonlinear approximate}) (the quadratic order lossless nonlinear progressive wave equation) and equation (\ref{lossy}) (the linear lossy progressive wave equation). The Burgers equation is the simplest model of nonlinear and absorptive wave propagation, which allows for the study of waves beyond the point of shock formation.</p>
+</div>
+</li>
+
+<li> When nonlinearity dominates absorption, what is the name of the solution to equation (\ref{Burgers}) in the region \(\sigma = x/\bar{x}\gtrsim 3\)? 
+<span class="expandable-toggle" onclick="toggleExpandableContent('1sol9')">[answer]</span>
+<div id="1sol9" class="expandable-content" style="color: #0000A0;">
+<p> This is the Fay solution.</p>
+</div>
+</li>
+
+
+<li> Nonlinearity is due to finite displacement and nonlinear governing equations, while dispersion is due to thermoviscous effects, boundary layers, and/or relaxation, but are any of these dispersion effects nonlinear? In other words, are nonlinearity and dispersion separate concepts, or are there situations in which dispersion manifests as nonlinearity? 
+<span class="expandable-toggle" onclick="toggleExpandableContent('1sol10')">[answer]</span>
+<div id="1sol10" class="expandable-content" style="color: #0000A0;">
+<p> This was in fact a question I asked Dr. Hamilton. His response:</p>
+<blockquote>
+We do not account for nonlinearity in the absorption and dispersion terms, which is to say that we do not account for terms of \(\mathcal{O}(\epsilon^2\eta)\), so yes, we treat the effects as separate concepts.  The nonlinear viscous terms, for example, can be taken into account, and there are studies of this, but the associated effects are significant only in special cases.
+</blockquote>
+</div>
+</li>
+
+</ol>
+</div>
+
+
+
+
+
+
+<div class="textbox">
+<h2 id="second">Second half of Dr. Hamilton's class: Rankine-Hugoniot relations, weak shock theory, radiation force, and acoustic streaming</h2>
+
+The second half of the course is investigated <a href="https://cag170030.github.io/chirag/final_study_guide_questions.pdf" target="_blank" rel="noopener noreferrer">in this review</a>, and  the solutions are available <a href="https://cag170030.github.io/chirag/final_study_guide_solutions.pdf" target="_blank" rel="noopener noreferrer">here</a>.
+
+<p>Below are some additional questions, which are mostly conceptual. The final three questions are more involved an are included mainly for completeness of the important equations of nonlinear acoustics.</p>
+
+<ol>
+<li> What is weak shock theory?
+<span class="expandable-toggle" onclick="toggleExpandableContent('2sol1')">[answer]</span>
+<div id="2sol1" class="expandable-content" style="color: #0000A0;">
+<p>Weak shock theory simplifies the study of shock waves to isentropic and reflectionless jumps at \(\mathcal{O}(\epsilon^2)\). A corollary of these simplifications is that the loss of energy is localized to the shock front.</p>
+</div>
+</li>
+
+<li> Qualitatively describe the speed at which a weak shock travels.
+<span class="expandable-toggle" onclick="toggleExpandableContent('2sol2')">[answer]</span>
+<div id="2sol2" class="expandable-content" style="color: #0000A0;">
+<p> The weak shock speed is related to the average of the particle velocity ahead and behind the shock front. </p>
+</div>
+</li>
+  
+
+<li> Qualitatively describe what determines the location of a shock front in retarded time in terms of the geometry of an overturned waveform. 
+<span class="expandable-toggle" onclick="toggleExpandableContent('2sol3')">[answer]</span>
+<div id="2sol3" class="expandable-content" style="color: #0000A0;">
+<p> The location of a shock front in retarded time is given by the point  \(\tau_\text{sh}\) at which the positive and negative areas of the overturned wavefront are equal. This is called "Landau's equal-area rule."</p>
+</div>
+</li>
+
+
+<li> Which two solutions are bridged together by Blackstock's bridging function 
+\begin{align*}
+B_n^{(1)} &= \frac{2P_\text{sh}}{n\pi}\\
+B_n^{(2)} &= \frac{2}{n\pi\sigma}\int_{\Phi_\text{sh}}^\pi \cos[n(\Phi - \sigma \sin \Phi)]d\Phi \,? 
+\end{align*}
+<i>Recall that \(B_n\) is the Fourier sine series expansion coeffcients, i.e., \(P(\sigma, \theta) = \sum_{n=1}^\infty B_n(\sigma)\sin n\theta\).</i> What is the significance of Blackstock's bridging function?
+<span class="expandable-toggle" onclick="toggleExpandableContent('2sol4')">[answer]</span>
+<div id="2sol4" class="expandable-content" style="color: #0000A0;">
+<p> The Blackstock bridging function bridges the Fubini solution (which solves the exact lossless nonlinear progressive wave equation) to the Fay solution (which solves the Burgers equation for \(\sigma \gtrsim 3\). The significance of Blackstock's bridging function is the full evolution it provides of a progressive wave at \(\mathcal{O}(\epsilon^2)\) for \(0\leq \sigma<\infty\). It recovers the Fubini solution for \(0\leq \sigma\leq 1\) and the Fey solution for \(\sigma\gtrsim 3\).</p>
+</div>
+</li>
+
+<li> True/False: the lossless exact progressive wave equation, the Burgers equation, and weak shock theory all describe isentropic wave propagation. 
+<span class="expandable-toggle" onclick="toggleExpandableContent('2sol5')">[answer]</span>
+<div id="2sol5" class="expandable-content" style="color: #0000A0;">
+<p>True. The lossy linear progressive wave equation, and hence the Burgers equation, describes isentropic wave propagation. Weak shock theory at \(\mathcal{O}(\epsilon^2)\) is also isentropic. This somewhat rationalizes how Blackstock's bridging function miraculously "bridges" a lossless exact solution (Fubini) to a lossy quadratic-order solution (Fay).</p>
+</div>
+</li>
+
+
+<li> Qualitatively discuss the phenomenon of <i>waveform freezing</i>. 
+<span class="expandable-toggle" onclick="toggleExpandableContent('2sol6')">[answer]</span>
+<div id="2sol6" class="expandable-content" style="color: #0000A0;">
+<p>... </p>
+</div>
+</li>
+
+
+<li> Coordinates that are fixed in space are called _______ coordinates, analogous to sitting on the bank of a river and watching a fallen leaf go by. 
+<span class="expandable-toggle" onclick="toggleExpandableContent('2sol7')">[answer]</span>
+<div id="2sol7" class="expandable-content" style="color: #0000A0;">
+<p>Eulerian </p>
+</div>
+</li>
+
+
+<li> Coordinates that are move along with particles are called _______ coordinates, analogous to swimming in the river alongside the fallen leaf. 
+<span class="expandable-toggle" onclick="toggleExpandableContent('2sol8')">[answer]</span>
+<div id="2sol8" class="expandable-content" style="color: #0000A0;">
+<p>Lagrangian </p>
+</div>
+</li>
+
+
+
+
+
+<li> <i>Not a conceptual question:</i> Transform the linear wave equation 
+\begin{equation}\label{waver}
+\nabla^2 p - \frac{1}{c_0^2}\frac{\partial^2 p}{\partial t^2} = 0
+\end{equation}
+from \((x,y,z,t)\) to \((x,y,z,\tau)\) coordinates, where \(\tau = t-z/c_0\). The correct result is
+\begin{equation}\label{wave}
+	\frac{\partial^2 p}{\partial \tau \partial z} = \frac{c_0}{2}\nabla^2 p\,,
+\end{equation}
+as given by P. V. Yuldashev and V. A. Khokhlova, "Simulation of Three-Dimensional Nonlinear Fields of Ultrasound Therapeutic Arrays," Acoustical Physics, 57, <b>3</b> (334-343) 2011, equation 3.
+<span class="expandable-toggle" onclick="toggleExpandableContent('2sol9')">[answer]</span>
+<div id="2sol9" class="expandable-content" style="color: #0000A0;">
+<p>To facilitate the coordinate transformation, denote the new spatial coordinates with primes, i.e., \((x',y',z',\tau)\). Start by writing the partial derivatives in the old \((x,y,z,t)\) coordinates in terms of the new \((x',y',z',\tau)\) coordinates:
+\begin{align*}
+\frac{\partial}{\partial x} &= \frac{\partial}{\partial x'}\frac{\partial x'}{\partial x} + \frac{\partial}{\partial y'}\frac{\partial y'}{\partial x} + \frac{\partial}{\partial z'}\frac{\partial z'}{\partial x} + \frac{\partial}{\partial \tau}\frac{\partial \tau}{\partial x} = \frac{\partial}{\partial x'}\\
+\frac{\partial}{\partial y} &= \frac{\partial}{\partial x'}\frac{\partial x'}{\partial y} + \frac{\partial}{\partial y'}\frac{\partial y'}{\partial y} + \frac{\partial}{\partial z'}\frac{\partial z'}{\partial y} + \frac{\partial}{\partial \tau}\frac{\partial \tau}{\partial y} = \frac{\partial}{\partial y'}\\
+\frac{\partial}{\partial z} &= \frac{\partial}{\partial x'}\frac{\partial x'}{\partial z} + \frac{\partial}{\partial y'}\frac{\partial y'}{\partial z} + \frac{\partial}{\partial z'}\frac{\partial z'}{\partial z} + \frac{\partial}{\partial \tau}\frac{\partial \tau}{\partial z} =\frac{\partial}{\partial z'}-\frac{1}{c_0} \frac{\partial}{\partial \tau}\\
+\frac{\partial}{\partial t} &= \frac{\partial}{\partial x'}\frac{\partial x'}{\partial t} + \frac{\partial}{\partial y'}\frac{\partial y'}{\partial t} + \frac{\partial}{\partial z'}\frac{\partial z'}{\partial t} + \frac{\partial}{\partial \tau}\frac{\partial \tau}{\partial t} = \frac{\partial}{\partial \tau}
+\end{align*} 
+Using these relations, note that
+\begin{align*}
+\frac{\partial^2}{\partial x^2} &= \frac{\partial^2}{\partial x'^2}\\
+\frac{\partial^2}{\partial y^2} &= \frac{\partial^2}{\partial y'^2}\\
+\frac{\partial^2}{\partial z^2} &= \frac{\partial^2}{\partial z'^2} - \frac{2}{c_0}\frac{\partial }{\partial z'}\frac{\partial}{\partial\tau} + \frac{1}{c_0^2}\frac{\partial^2}{\partial \tau^2}\\
+\frac{\partial^2}{\partial t^2} &= \frac{\partial^2}{\partial \tau^2}
+\end{align*}
+Thus equation (\ref{waver}) becomes
+\begin{align*}
+\bigg(\frac{\partial^2}{\partial x'^2} + \frac{\partial^2}{\partial y'^2} +\frac{\partial^2}{\partial z'^2}-\frac{2}{c_0}\frac{\partial^2}{\partial z'\partial \tau} + \frac{1}{c_0^2}\frac{\partial^2}{\partial \tau^2}\bigg)p - \frac{1}{c_0^2}\frac{\partial^2p}{\partial\tau^2}&=0\,.
+\end{align*}
+Canceling common terms and rearranging gives
+\begin{equation*}
+\nabla^2 p = \frac{2}{c_0}\frac{\partial^2 p}{\partial z'\partial\tau}\,.
+\end{equation*}
+Finally, recalling that \(z'\) is but a placeholder, and that in fact \(z' = z\), gives the desired equation (\ref{wave}), 
+\begin{equation*}
+\frac{\partial^2 p}{\partial \tau \partial z} = \frac{c_0}{2}\nabla^2 p\,.
+\end{equation*}</p>
+</div>
+</li>
+
+
+
+
+<li>Equation (\ref{Burgers}) for propagation in the \(z\) direction is \(\frac{\partial p}{\partial z} = \frac{\delta}{2c_0^3}\frac{\partial^2 p}{\partial \tau^2} + \frac{\beta p}{\rho_0 c_0^3}\frac{\partial p}{\partial \tau}\). Take the partial derivative with respect to \(\tau\) and add the result to the right-hand side of equation (\ref{wave}) to obtain
+\begin{equation}\label{Westervelt}
+\frac{\partial^2 p}{\partial \tau \partial z} = \frac{c_0}{2}\nabla^2 p +\frac{\delta}{2c_0^3}\frac{\partial^3 p}{\partial \tau^3} + \frac{\beta}{2\rho_0c_0^3}\frac{\partial^2 p^2}{\partial \tau^2}\,.
+\end{equation}
+ What is the name of the resulting wave equation?
+<span class="expandable-toggle" onclick="toggleExpandableContent('2sol10')">[answer]</span>
+<div id="2sol10" class="expandable-content" style="color: #0000A0;">
+<p> Taking the partial derivative with respect to \(\tau\) gives
+\begin{equation*}
+\frac{\partial^2 p}{\partial\tau\partial z} = \frac{\delta}{2c_0^3}\frac{\partial^3 p}{\partial \tau^3} + \frac{\beta p}{\rho_0 c_0^3}\frac{\partial^2 p}{\partial^2 \tau}
+\end{equation*}
+Adding the above to the right-hand side of equation (\ref{wave}) gives the <i>Westervelt equation</i>, equation (\ref{Westervelt})
+</p>
+</div>
+</li>
+
+
+
+<li> The KZK equation is 
+\begin{equation}
+\frac{\partial^2 p}{\partial \tau \partial z} = \frac{c_0}{2}\nabla^2_\perp p +\frac{\delta}{2c_0^3}\frac{\partial^3 p}{\partial \tau^3} + \frac{\beta}{2\rho_0c_0^3}\frac{\partial^2 p^2}{\partial \tau^2}\,.
+\end{equation}
+Qualitatively describe the difference between the Westervelt and KZK equations. Why  would someone describe a sound beam using the KZK equation instead of using the Westervelt equation?
+<span class="expandable-toggle" onclick="toggleExpandableContent('2sol11')">[answer]</span>
+<div id="2sol11" class="expandable-content" style="color: #0000A0;">
+<p> Again quoting Dr. Hamilton: </p>
+<blockquote>The KZK equation simply uses the Fresnel (paraxial) approximation of the Helmholtz equation operator (\(\nabla^2 + k^2\)) that is on the left-hand side of the traditional form of the Westervelt equation...Analytical and numerical solutions of the KZK equation are much more easily obtained than the corresponding solutions of the Westervelt equation.</blockquote>
+</p>
+</div>
+</li>
+
+</ol>
+</div>
+
+
+
+
+
+</div>
+</body>
+</html>
