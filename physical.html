@@ -13,6 +13,23 @@ window.MathJax = {
   }
 };
 </script>
+<script type="text/javascript">
+window.MathJax = {
+  tex: {
+    macros: {
+      Order: "{\\mathcal O}",
+      vec: ['\\boldsymbol{#1}',1] ,
+      div: "{\\boldsymbol{\\nabla}\\cdot}",
+      grad: "{\\boldsymbol\\nabla}",
+      curl: "{\\boldsymbol\\nabla\\times}",
+      Laplacian: "{\\nabla^2}",
+      dAlambertian: "{\\Box^2}",
+      Order: "{\\mathcal O}",
+      T: "{^\\mathsf{T}}"
+    }
+  }
+};
+</script>	
   <style>
     body {
       margin: 20px;
@@ -88,8 +105,6 @@ window.MathJax = {
 
 </head>
 <body>
-\(\renewcommand{\vec}[1]{\boldsymbol{#1}}\)
-
   <nav>
     <ul>
 	 <li><a href="index.html">Home</a></li>
