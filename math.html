@@ -1460,7 +1460,7 @@ where \(P\) is some multivariate polynomial. Simply put, a polynomial is homogen
 
 
 <li>Classify the differential equation 
-\begin{equation}\label{ode1}
+\begin{equation}\label{ode1}\tag{1}
 \frac{dy}{dx} = a(x) y\,.
 \end{equation}
 Find the general solution to equation (\ref{ode1}).
@@ -1521,7 +1521,7 @@ y &= x(\frac{1}{2}\ln{x} + C)^2
 </li>
 
 <li>Classify the differential equation 
-\begin{equation}\label{ode2}
+\begin{equation}\label{ode2}\tag{2}
 \frac{dy}{dx} = a(x) y + b(x)\,.
 \end{equation}
 Find the general solution to equation (\ref{ode2}) by assuming the form of solution to equation (\ref{ode1}), but with \(C = C(x)\). What is the name of this solution?
@@ -1588,7 +1588,7 @@ where \(C\) above varies form line to line (I know it is not technically correct
 </li>
 
 <li> Classify the differential equation
-\begin{equation}\label{bern}
+\begin{equation}\label{bern}\tag{3}
 \frac{dy}{dx} = a(x)y + b(x)y^n
 \end{equation}
 where \(n\neq 0,1\) is real. What is the name of this equation? What substitution does one make to facilitate its solution?
@@ -1635,7 +1635,7 @@ The solution to for \(y\) is thus \(y= \pm\sqrt{C-2x}\).
 
 
 <li> Classify the differential equation
-\begin{equation}\label{exact}
+\begin{equation}\label{exact}\tag{4}
 M(x,y)dx + N(x,y)dy = 0\,,\quad \text{where } \frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}\,.
 \end{equation}
 What is the general solution of equation (\ref{exact}) in integral form?
@@ -1679,7 +1679,7 @@ F(x,y) = y^4 + x^4 + 3xy\,.
 
 
 <li> How does one solve 
-\begin{equation}\label{integratingfactor}
+\begin{equation}\label{integratingfactor}\tag{5}
 M(x,y)dx + N(x,y)dy = 0\,,\quad \text{but now where } \frac{\partial M}{\partial y} \neq \frac{\partial N}{\partial x}\,?
 \end{equation}
 What is the name of this method?
@@ -1744,7 +1744,7 @@ and thus \(C(x) = \text{const}\). The solution is therefore \(F(x,y) = x^2 e^x \
 </li>
 
 <li> Classify the differential equation
-\begin{equation}\label{secondorder}
+\begin{equation}\label{secondorder}\tag{6}
 ay'' + b' + cy = 0\,,
 \end{equation}
 where \(a\), \(b\), and \(c\) are constants, and where the prime \('\) will now be used for notational ease to signify derivative. How does one solve this equation? There are the three possible cases that emerge. What are they?
@@ -1802,7 +1802,7 @@ Two solutions of the same equation are called a fundamental pair if \(W \neq 0\)
 </li>
 
 <li> &#9784; Classify the differential equation 
-\begin{equation}\label{homo2}
+\begin{equation}\label{homo2}\tag{7}
 a(x) y'' + b(x) y' + c(x) y = 0\,.
 \end{equation}
 Given one solution \(y_1\) to equation (\ref{homo2}), how can the other solution \(y_2\) be found? What is this method called? <i>Hint: Let \(y_2 = uy_1\). Insert this into equation (\ref{homo2}). Introduce \(z= u'\) and then let \(z= u'\) (This is where the name of the method comes from). Solve for \(z\), integrate, and find \(u\). \(y_2\) is then found because \(y_2 = uy_1\). I doubt this would be on the exam as it is too involved. </i> 
@@ -1868,7 +1868,7 @@ y_2 &= y_1\int y_1^{-2}e^{\int \frac{b(x)}{a(x)} dx} dx\\
 
 
 <li> Classify the differential equation
-\begin{equation}\label{inhomo2} 
+\begin{equation}\label{inhomo2} \tag{8}
 ay'' + by' + cy = g(x)\,.
 \end{equation}
 List the two ways to solve this equation. 
@@ -1974,7 +1974,7 @@ y_p &= -y_1 \int \frac{y_2 g}{W}dx  + y_2 \int \frac{y_1 g}{W}dx\\
 </li>
 
 <li>&#9784; What is
-\begin{equation}\label{Cauchy-Euler}
+\begin{equation}\label{Cauchy-Euler}\tag{9}
 ax^2 y'' + bxy' + cy = 0
 \end{equation}
 called? (<i>Why is it a bad name</i>)? What clever substitution does one make to go about solving it?
@@ -3000,12 +3000,12 @@ They are immediate from the definitions of divergence and curl above, but to see
 <ol>
 <li> Provide the name of each of the following partial differential equations. Also list a few physical phenomena described by each:
 \begin{align}
-\nabla^2 u &= 0\label{Laplace}\\
-\nabla^2 u &= f(\vec{r})\label{Poisson}\\
-\nabla^2 u &= \frac{1}{\alpha^2}\frac{\partial u }{\partial t}\label{Diffusion}\\
-\nabla^2 u &= \frac{1}{v^2}\frac{\partial^2 u}{\partial t^2}\label{Wave}\\
-\nabla^2 F  + k^2 F&= 0\label{Helmholtz}\\
-i\hbar \frac{\partial\Psi}{\partial t}&= -\frac{\hbar^2}{2m}\nabla^2 \Psi + V\Psi \label{Schrodinger}
+\nabla^2 u &= 0\label{Laplace} \tag{i}\\
+\nabla^2 u &= f(\vec{r})\label{Poisson}\tag{ii}\\
+\nabla^2 u &= \frac{1}{\alpha^2}\frac{\partial u }{\partial t}\label{Diffusion}\tag{iii}\\
+\nabla^2 u &= \frac{1}{v^2}\frac{\partial^2 u}{\partial t^2}\label{Wave}\tag{iv}\\
+\nabla^2 F  + k^2 F&= 0\label{Helmholtz}\tag{v}\\
+i\hbar \frac{\partial\Psi}{\partial t}&= -\frac{\hbar^2}{2m}\nabla^2 \Psi + V\Psi \label{Schrodinger}\tag{vi}
 \end{align}
 Which two equations above both reduce to equation (\ref{Helmholtz}) upon assuming time-harmonic solutions?
 <span class="expandable-toggle" onclick="toggleExpandableContent('PDE1a')">[answer]</span>
@@ -3255,7 +3255,7 @@ e^{\alpha x}\\ e^{-\alpha x}
 \end{Bmatrix}
 \begin{Bmatrix}
 e^{\alpha c t}\\ e^{-\alpha c t}
-\end{Bmatrix}
+\end{Bmatrix} \tag{a}
 \end{align}
 What a bizarre-looking solution! If you do not believe it is a solution to the wave equation, you can check it for yourself by setting the separation constant equal to \(X''/X = \alpha^2\), which gives \(T''/T = (\alpha c)^2\)! <i>Is this solution a wave?</i> Meanwhile, a solution to the 1D diffusion equation \(\frac{\partial^2 p }{\partial x^2} -  \kappa^2\frac{\partial p}{\partial t} = 0\) is 
 \begin{align}\label{heaters}p = 
@@ -3266,7 +3266,7 @@ e^{-(k/\kappa)^2t} =
 \begin{Bmatrix}
 e^{ik x}\\ e^{-ik x}
 \end{Bmatrix}
-e^{-(k/\kappa)^2t} 
+e^{-(k/\kappa)^2t} \tag{b}
 \end{align}
 Is <i>this</i> solution a wave?
 <span class="expandable-toggle" onclick="toggleExpandableContent('PDE7sa')">[answer]</span>
