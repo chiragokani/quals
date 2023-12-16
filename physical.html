@@ -730,7 +730,7 @@ Also note that every reversible process is quasistatic, but not every quasistati
 </li>
 
 <li>Use the entropy equation [see Blackstock equation (2-A-43), or the beginning of <i>Nonlinear Acoustics</i> by Hamilton and Blackstock, or <i>Fluid Mechanics</i> by Lifshitz and Landau], 
-\begin{equation}\label{entropers}
+\begin{equation}\label{entropers}\tag{1}
 \rho T \frac{\partial s}{\partial t}= \kappa \nabla^2 T + \text{miscellaneous terms}\,,
 \end{equation}
 to show that low-frequency sound is isentropic, while high-frequency sound is isothermal.
@@ -1302,7 +1302,7 @@ Setting the above two equations for \(\frac{A}{B}\) equal and solving for \(\fra
 
 
 <li> In the previous problem it was found that the input impedance in terms of the impedance of the load is 
-\begin{equation}\label{Input impedance}
+\begin{equation}\label{Input impedance}\tag{2}
 \frac{Z_\text{in}}{\rho_0 c_0} = \frac{Z_n/\rho_0 c_0 + j\tan kL}{1 + j(Z_n/\rho_0 c_0) \tan kL}   \,. 
 \end{equation}
 What are the three special cases that follow from equation (\ref{Input impedance})?
@@ -1495,10 +1495,10 @@ The impedance of the Helmholtz resonator goes to \(0\) at resonance. Thus the re
 </div>
 </li>
 
-<li> The reflection and transmission coefficients for three-medium problem are
+<li> The reflection and transmission coefficients for the three-medium problem are
 \begin{align}
-R &= \frac{(1-Z_1/Z_3)\cos k_2\ell + j(Z_2/Z_3-Z_1/Z_2)\sin k_2\ell}{(1+Z_1/Z_3)\cos k_2\ell + j(Z_2/Z_3+Z_1/Z_2)\sin k_2\ell}\label{3R}\\
-T &= \frac{2}{(1+Z_1/Z_3)\cos k_2\ell + j(Z_2/Z_3+Z_1/Z_2)\sin k_2\ell}\label{3T}
+R &= \frac{(1-Z_1/Z_3)\cos k_2\ell + j(Z_2/Z_3-Z_1/Z_2)\sin k_2\ell}{(1+Z_1/Z_3)\cos k_2\ell + j(Z_2/Z_3+Z_1/Z_2)\sin k_2\ell}\label{3R} \tag{3}\\
+T &= \frac{2}{(1+Z_1/Z_3)\cos k_2\ell + j(Z_2/Z_3+Z_1/Z_2)\sin k_2\ell}\label{3T} \tag{4}
 \end{align}
 Find \(R\) and \(T\) for the special cases of \(k_2 \ell = n\pi\) and \(k_2 \ell = (2n-1)\pi/2\). 
 <span class="expandable-toggle" onclick="toggleExpandableContent('4sol15')">[answer]</span>
@@ -1580,9 +1580,9 @@ Thus the transmission loss is \(20\log_{10} 2 = 6 \text{ dB}/\text{octave}\). Th
 <li> Consider wave propagation at the interface of two media, where the medium on the left is denoted "1" and has impedance \(Z_1\), and the medium on the right is denoted "2" and has impedance \(Z_2\), as shown below. The the horizontal direction is the rectangular \(x\)-coordinate and the vertical direction is the rectangular \(y\)-coordinate.
 <img src="obliquers.png" width="183" height="186" style = "display: block; margin-left: auto; margin-right: auto;"/>
 \begin{align}
-p_i &= A_i \exp{(-jk_1x\cos\theta_i - jk_1y\sin\theta_i)}\label{pi}\\
-p_r &= A_r \exp{(jk_1x\cos\theta_r - jk_1y\sin\theta_r)}\label{pr}\\
-p_t &= A_t \exp{(-jk_2x\cos\theta_t - jk_2y\sin\theta_t)}\label{pt}\\
+p_i &= A_i \exp{(-jk_1x\cos\theta_i - jk_1y\sin\theta_i)}\label{pi} \tag{5}\\
+p_r &= A_r \exp{(jk_1x\cos\theta_r - jk_1y\sin\theta_r)}\label{pr} \tag{6}\\
+p_t &= A_t \exp{(-jk_2x\cos\theta_t - jk_2y\sin\theta_t)}\label{pt} \tag{7}\\
 \end{align}
 What is the condition on the pressure at the boundary? Use this condition to derive the law of reflection and Snell's law.
 <span class="expandable-toggle" onclick="toggleExpandableContent('5sol1')">[answer]</span>
@@ -2144,7 +2144,7 @@ W_\text{in}&= W_0\rho_0c_0\Re (1/Z_\text{in})\\
 
 <li> Simplify the 1D momentum equation with a body force \(\rho (u_t + uu_z)+ P_z = -\rho g\) for a motionless fluid, i.e., \(u=0, P=p_0, \rho=\rho_0\), to obtain
 \begin{equation}\label{gravity}
-\frac{dp_0}{dz} = -\rho_0 g\,.
+\frac{dp_0}{dz} = -\rho_0 g\,. \tag{8}
 \end{equation}
 What are two different assumptions on \(\rho_0\) that allow for simple solutions of equation (\ref{gravity})?
 <span class="expandable-toggle" onclick="toggleExpandableContent('8sol2')">[answer]</span>
@@ -2173,7 +2173,7 @@ The scale height is the height \(H\) at which the atmosphere terminates: \(p_0=0
 
 <li> Next assume that the temperature is \(T_0\) at all heights. Why is "isothermal" not the best word choice for such an atmosphere? Combine the ideal gas law \(\rho_0 = p_0/RT_0 = \gamma p_0/c_0^2\) with the definition of the scale height \(c_0^2 = H\gamma g\) and eliminate \(\rho_0\) in equation (\ref{gravity}), and thus obtain 
 \begin{equation}\label{integrateher}
-\frac{dp_0}{dz} = -\frac{p_0}{H}\,.
+\frac{dp_0}{dz} = -\frac{p_0}{H}\,. \tag{9}
 \end{equation}
 Solve equation (\ref{integrateher}) for \(p_0\).
 <span class="expandable-toggle" onclick="toggleExpandableContent('8sol3')">[answer]</span>
@@ -2248,7 +2248,7 @@ Meanwhile, rearranging equation (\ref{momers}) and taking the time derivative gi
 \frac{\partial^2 p}{\partial z\partial t} - g\frac{\partial}{\partial z}(\rho_0 u) = -\rho_0\frac{\partial^2 u}{\partial t^2}\,.
 \end{equation}
 Subtract equation (\ref{combiners}) from equation (\ref{combiners2}) to obtain
-\begin{equation}\label{horny}
+\begin{equation}\label{horny}\tag{10}
 \frac{\partial^2 u}{\partial z^2} + \frac{\partial (\rho_0c_0^2)/\partial z}{\rho_0c_0^2}\frac{\partial u}{\partial z} - \frac{1}{c_0^2}\frac{\partial^2 u }{\partial t^2} = 0,
 \end{equation}
 the wave equation for plane waves in an inhomogeneous medium.
@@ -2408,8 +2408,8 @@ R_c&= \frac{ds}{d\theta} = \frac{ds}{dz}\frac{dz}{dc}\frac{dc}{d\theta}\\
 
 <li> The figure below is adapted from Blackstock's figure 8.8. It shows that a ray in a linear sound speed profile traverses a depth and range of
 \begin{align}
-\Delta z &= R_c(\cos\theta_i - \cos\theta)\label{skippy}\\
-\Delta r &= R_c(\sin\theta - \sin\theta_i)\,. \label{skippy2}
+\Delta z &= R_c(\cos\theta_i - \cos\theta)\label{skippy} \tag{11}\\
+\Delta r &= R_c(\sin\theta - \sin\theta_i)\,. \label{skippy2} \tag{12}
 \end{align}
 <img src="stocker.png" width="640" height="293" style = "display: block; margin-left: auto; margin-right: auto;"/>
 Find the distance from the source to the vertex by setting \(\theta=0\) and using the expression for \(R_c\) found in problem 18.
@@ -3408,7 +3408,7 @@ Thus one obtains the true statement, \(-1 = -1\). The free space Green's functio
 </li>
 
 <li>  To determine the condition that makes a medium reciprocal, suppose there are point sources at positions \(\vec{r}_1\)  and \(\vec{r}_2\). The free space Green's functions \(G(\vec{r}|\vec{r}_1)\) and \(G(\vec{r}|\vec{r}_2)\) satisfy their respective inhomogeneous Helmholtz equations. Combination of the Helmholtz equations, integration over volume, and application of the divergence theorem leads to 
-\begin{align}\label{vanishitofffthat}
+\begin{align}\label{vanishitofffthat}\tag{13}
 \int_{\mathcal{S}} \bigg[G(\vec{r}|\vec{r}_2) \frac{\partial G(\vec{r}|\vec{r}_1)}{\partial n}  - G(\vec{r}|\vec{r}_1) \frac{\partial G(\vec{r}|\vec{r}_2)}{\partial n}\bigg] dS &= G(\vec{r}_2|\vec{r}_1) - G(\vec{r}_1|\vec{r}_2)\,.
 \end{align}
 Why does the right-hand side of equation (\ref{vanishitofffthat}) equal \(0\)? What are the three conditions on the boundary of surface \(\mathcal{S}\) in which the left-hand side vanishes, thereby satisfying the equality and giving the conditions for a reciprocal medium?
@@ -3429,7 +3429,7 @@ Boundary condition (\ref{Greenboundary1}) corresponds to a pressure release surf
   
 
 <li>&#9784; Starting with the Helmholtz equation for a point-inhomogeneity,\(\nabla^2 G + k^2 G = -\delta(\vec{r} - \vec{r}_0)\), and for a function-inhomogeneity, \(\nabla^2 p + k^2 p = -f(\vec{r})\), derive the Helmholtz-Kirchoff integral,
-\begin{align}\label{HKint}
+\begin{align}\label{HKint}\tag{14}
 p(\vec{r}) = \int_{\mathcal{V}} f(\vec{r}_0) G(\vec{r}|\vec{r}_0)dV_0 + \oint_\mathcal{S} \bigg[G(\vec{r}|\vec{r}_0) \frac{\partial p(\vec{r}_0)}{\partial n_0} - p(\vec{r}_0)\frac{\partial G(\vec{r}|\vec{r}_0)}{\partial n_0} \bigg]dS_0
 \end{align}
 <i>Outline: Relate the two PDEs by multiplying the point-inhomogeneity PDE by \(p\) and the function-inhomogeneity PDE by \(G\). Subtract, interchange \(\vec{r}\) and \(\vec{r}_0\), integrate over volume, and apply the divergence theorem.</i> Why does the surface integral vanish in free space?
@@ -3463,7 +3463,7 @@ If the medium is reciprocal, the surface integral vanishes in free space because
 
 
 <li>&#9784; Use equation (\ref{HKint}) to derive the Rayleigh integral of the <i>first</i> kind, 
-\begin{align}\label{Rayleigh integral}
+\begin{align}\label{Rayleigh integral}\tag{15}
 p(\vec{r}) &= \frac{j\omega \rho_0}{2\pi}\oint_\mathcal{S}  \frac{e^{-jkR}}{R}  u^{(z)}(\vec{r}_0) dS_0
 \end{align}
 which gives the pressure field due to a <i>velocity</i> source. Let \(\hat{n}_0\) be the unit outward normal, and align the surface source in the plane \(z=0\), as shown below. 
@@ -3512,7 +3512,7 @@ where \(R = \sqrt{(x-x_0)^2 + (y-y_0)^2 +z^2}\). Note that the contour integral 
 </p>
 
 <li>&#9784; Derive the Rayleigh integral of the <i>second</i> kind, 
-\begin{align}\label{Rayleigh integral 2}
+\begin{align}\label{Rayleigh integral 2}\tag{16}
 p(\vec{r}) &= \frac{jkz}{2\pi} \oint p(\vec{r}_0)  \bigg(1 + \frac{1}{jkR} \bigg) \frac{e^{-jkR}}{R^2} dS_0\,,
 \end{align}
 which gives the pressure field due to a <i>pressure</i> source. Start with equation (\ref{HKint}), and follow the derivation for the first Rayleigh integral, only now choosing \(G(\vec{r}|\vec{r}_0) = g_+(\vec{r}|\vec{r}_0) - g_-(\vec{r}|\vec{r}_0)\). What is this integral called in optics?
@@ -3554,7 +3554,7 @@ This integral is called the Rayleigh integral of the first kind in optics <i>bec
 </li>
 
 <li>&#9784; Obtain the Fraunhofer approximation of the Rayleigh integral of the first kind (\ref{Rayleigh integral}):
-\begin{align}\label{Fraunhofer}
+\begin{align}\label{Fraunhofer}\tag{17}
 p(\vec{r}) &= \frac{j\omega \rho_0}{2\pi}\frac{e^{-jkr}}{r} \iint_{-\infty}^\infty  e^{jk_xx_0 + jk_yy_0}  u_0(x_0,y_0) dx_0 dy_0
 \end{align}
  <i>Outline: Expand the squares in the displacement \(R = \sqrt{(x-x_0)^2 + (y-y_0)^2 +z^2},\) identify \(r^2 = x^2+ y^2+z^2\), and take the first-order binomial expansion of \(R\). Multiply by \(k\) to make the quantity dimensionless, and throw out quadratic terms (terms proportional to \(x_0^2,y_0^2\)). Finally, interpret \(k_x \equiv kx/r\) and \(k_y \equiv ky/r\). </i> Do you recognize the resulting 2D integral? At what \(r\) does the Fraunhofer approximation hold?
@@ -3672,7 +3672,7 @@ p(\vec{r}) &= \frac{j\omega \rho_0 Q_0}{2\pi}\frac{e^{-jkr}}{r} J_0 (ka\sin\thet
 </li>
 
 <li>&#9784; Obtain the Fresnel (paraxial) approximation of equation (\ref{Rayleigh integral}). The result is
-\begin{align}\label{Fresnel}
+\begin{align}\label{Fresnel}\tag{18}
 p(x,y,z) &= \frac{j\omega \rho_0}{2\pi}\frac{e^{-jkz}}{z}\iint_{-\infty}^\infty  \,  u_0(x_0,y_0) e^{-jk [(x-x_0)^2 + (y-y_0)^2]/2z}\,dx_0\, dy_0\,.
 \end{align}
 <i>Outline: Expand \(R\) in powers of \(1/z\) (whereas in the Fraunhofer approximation, \(R\) was expanded in powers of \(1/r\)).</i> What are the limits on this approximation? 
