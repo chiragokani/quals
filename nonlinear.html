@@ -137,7 +137,7 @@ window.MathJax = {
 
 <ol>
 <li> What sort of wave motion does 
-\begin{equation}\label{first}
+\begin{equation}\label{first}\tag{1}
 \frac{\partial^2 p}{\partial x^2} - \frac{1}{c_0^2}\frac{\partial^2 p}{\partial t^2} = -\frac{\delta}{c_0^4} \frac{\partial^3 p}{\partial t^3}
 \end{equation}
 describe? Qualitatively describe the solutions to this wave equation. 
@@ -150,7 +150,7 @@ describe? Qualitatively describe the solutions to this wave equation.
 
 
 <li> How does 
-\begin{equation}\label{lossy}
+\begin{equation}\label{lossy}\tag{2}
 \frac{\partial p}{\partial x} = \frac{\delta}{2c_0^3}\frac{\partial^2 p}{\partial \tau^2}
 \end{equation}
 relate to equation (\ref{first})? Which of these two equations is invariant under the exchange \(t\mapsto -t\)? How can this time-reversal symmetry be consistent with the second law of thermodynamics? Resolve this paradox.
@@ -169,7 +169,7 @@ relate to equation (\ref{first})? Which of these two equations is invariant unde
   
 
 <li> What sort of wave motion does 
-\begin{equation}\label{nonlinear exact}
+\begin{equation}\label{nonlinear exact}\tag{3}
 \frac{\partial u}{\partial t} + (c+u)\frac{\partial u}{\partial x} = 0
 \end{equation} describe? Qualitatively describe its solutions. After whom are these solutions named? 
 <span class="expandable-toggle" onclick="toggleExpandableContent('1sol3')">[answer]</span>
@@ -194,7 +194,7 @@ relate to equation (\ref{first})? Which of these two equations is invariant unde
 
 
 <li> What is the relationship between
-\begin{equation}\label{nonlinear approximate}
+\begin{equation}\label{nonlinear approximate}\tag{4}
 \frac{\partial u}{\partial x} = \frac{\beta}{c_0^2}u\frac{\partial u}{\partial \tau}
 \end{equation}
 and equation (\ref{nonlinear exact})?
@@ -212,7 +212,7 @@ and equation (\ref{nonlinear exact})?
 
 
 <li> What is the name and order \(\mathcal{O}\) of 
-\begin{equation}\label{Burgers}
+\begin{equation}\label{Burgers}\tag{5}
 \frac{\partial p}{\partial x}- \frac{\delta}{2c_0^3}\frac{\partial^2 p}{\partial \tau^2}= \frac{\beta p}{\rho_0 c_0^3} \frac{\partial p}{\partial \tau}?
 \end{equation}
 How is this equation qualitatively related to equations (\ref{lossy})-(\ref{nonlinear approximate})? How does the Burgers equation of acoustics differ from the more widely known Burgers equation (found on <a href="https://en.wikipedia.org/wiki/Burgers%27_equation" target="_blank" rel="noopener noreferrer">Wikipedia</a>, for example)? What is the significance of the Burgers equation in nonlinear acoustics? 
@@ -302,7 +302,7 @@ B_n^{(2)} &= \frac{2}{n\pi\sigma}\int_{\Phi_\text{sh}}^\pi \cos[n(\Phi - \sigma 
 <li> Qualitatively discuss the phenomenon of <i>waveform freezing</i>. 
 <span class="expandable-toggle" onclick="toggleExpandableContent('2sol6')">[answer]</span>
 <div id="2sol6" class="expandable-content" style="color: #0000A0;">
-<p>... </p>
+<p>Geometric spreading competes with nonlinear shock formation. </p>
 </div>
 </li>
 
@@ -327,11 +327,11 @@ B_n^{(2)} &= \frac{2}{n\pi\sigma}\int_{\Phi_\text{sh}}^\pi \cos[n(\Phi - \sigma 
 
 
 <li> <i>Not a conceptual question:</i> Transform the linear wave equation 
-\begin{equation}\label{waver}
+\begin{equation}\label{waver}\tag{6}
 \nabla^2 p - \frac{1}{c_0^2}\frac{\partial^2 p}{\partial t^2} = 0
 \end{equation}
 from \((x,y,z,t)\) to \((x,y,z,\tau)\) coordinates, where \(\tau = t-z/c_0\). The correct result is
-\begin{equation}\label{wave}
+\begin{equation}\label{wave}\tag{7}
 	\frac{\partial^2 p}{\partial \tau \partial z} = \frac{c_0}{2}\nabla^2 p\,,
 \end{equation}
 as given by P. V. Yuldashev and V. A. Khokhlova, "Simulation of Three-Dimensional Nonlinear Fields of Ultrasound Therapeutic Arrays," Acoustical Physics, 57, <b>3</b> (334-343) 2011, equation 3.
@@ -370,7 +370,7 @@ Finally, recalling that \(z'\) is but a placeholder, and that in fact \(z' = z\)
 
 
 <li>Equation (\ref{Burgers}) for propagation in the \(z\) direction is \(\frac{\partial p}{\partial z} = \frac{\delta}{2c_0^3}\frac{\partial^2 p}{\partial \tau^2} + \frac{\beta p}{\rho_0 c_0^3}\frac{\partial p}{\partial \tau}\). Take the partial derivative with respect to \(\tau\) and add the result to the right-hand side of equation (\ref{wave}) to obtain
-\begin{equation}\label{Westervelt}
+\begin{equation}\label{Westervelt}\tag{8}
 \frac{\partial^2 p}{\partial \tau \partial z} = \frac{c_0}{2}\nabla^2 p +\frac{\delta}{2c_0^3}\frac{\partial^3 p}{\partial \tau^3} + \frac{\beta}{2\rho_0c_0^3}\frac{\partial^2 p^2}{\partial \tau^2}\,.
 \end{equation}
  What is the name of the resulting wave equation?
