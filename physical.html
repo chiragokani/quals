@@ -3259,9 +3259,9 @@ u_0 e^{j\omega t},\quad &r\in [0,b]\\
 \end{cases}\,.\tag{i}\label{sldfkjlkjkljlk}
 \end{align}
 The orthogonality of the Bessel functions is used to find the expansion coefficient \(A_n\). Letting \(x = r/a\) and thus \(dx = dr/a\), the orthogonality integral becomes
-\[a^2\int_0^a J_m(\alpha'_{mn} r/a)J_m(\alpha'_{mn'} r/a) r\, dr = \frac{a^2}{2}[1-(m/\alpha'_{mn})^2] J^2_m(\alpha'_{mn'}x) \delta_{nn'}\,,\]
+\[\int_0^a J_m(\alpha'_{mn} r/a)J_m(\alpha'_{mn'} r/a) r\, dr = \frac{a^2}{2}[1-(m/\alpha'_{mn})^2] J^2_m(\alpha'_{mn'}x) \delta_{nn'}\,,\]
 which for \(m=0\) reads
-\[a^2\int_0^a J_0(\alpha'_{0n} r/a)J_0(\alpha'_{0n'} r/a) r\, dr = \frac{a^2}{2} J^2_0(\alpha'_{0n'}x) \delta_{nn'} \,,\]
+\[\int_0^a J_0(\alpha'_{0n} r/a)J_0(\alpha'_{0n'} r/a) r\, dr = \frac{a^2}{2} J^2_0(\alpha'_{0n'}x) \delta_{nn'} \,,\]
 where the last equality holds since \(J_0'(x) = -J_1(x)\). Multiplying both sides of equation (\ref{sldfkjlkjkljlk}) by \(J_0(\alpha'_{0n'} r/a) r dr\) gives
 \begin{align*}
 \frac{1}{\rho_0 c_0 k}\sum_{n} \beta_n A_n J_0(\alpha'_{0n} r/a)J_0(\alpha'_{0n'} r/a) r dr  = \begin{cases}
@@ -3287,6 +3287,7 @@ Solve for \(A_n\):
 A_n  = \rho_0 c_0 u_0 \, \frac{b}{a}\,  \frac{2k}{\beta_n\alpha_{0n}}\,   \frac{J_1(\alpha'_{0n}b/a)}{[J_0(\alpha'_{0n})]^2 }\,.
 \end{align*}
 </p>
+<p>For more on this problem, see <a href="https://cag170030.github.io/quals/piston_in_tube.html" target="_blank" rel="noopener noreferrer">here</a>.</p>
 </div>
 </li>
  
