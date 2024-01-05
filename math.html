@@ -642,8 +642,7 @@ At first, it was not intuitively clear to me why this signal is a pure Gaussian 
 <h2 id="linear">Linear algebra</h2>
 <p>These questions come from <i>Introduction to Linear Algebra</i> by Gilbert Strang and the appendix of <i>Introduction to Quantum Mechanics</i> by D. J. Griffiths. </p>
 
-<p>Towards the end of this section there is some inherent overlap with <i>vector</i> and <i>tensor</i> algebras, which are generalizations of linear algebra.  
-</p>
+<p>Towards the end of this section there is some overlap with <i>tensor</i> algebra.</p>
 <ol>
 
 <li>Define linear independence.
@@ -1383,6 +1382,23 @@ Thus the eigenvalues are invariant under linear transformations of matrices.
 <span class="expandable-toggle" onclick="toggleExpandableContent('lin12')">[answer]</span>
 <div id="lin12" class="expandable-content" style="color: #0000A0;">
 <p>  Like the eigenvalues themselves, the trace and the determinant are independent of basis. \(\text{Tr } \mathsf{A} = \sum_n \lambda_n \) and \(\text{det } {\mathsf{A}} = \prod_n \lambda_n \).  
+</p>
+</div>
+</li>
+
+<li>&#9784; Find the eigenvalues and eigenvectors of 
+\begin{equation*}
+\begin{pmatrix}
+1 & 1& 1\\
+1 & 1& 1\\
+1 & 1& 1
+\end{pmatrix}\,.
+\end{equation*}
+Comment on the orientation of the eigenvectors. Are they orthogonal? Why or why not? If not, does this contradict the earlier claim that the eigenvectors of a real symmetric matrix (problem 22) are orthogonal? And if the eigenvectors are not orthogonal, can one make them orthogonal? If so, do this. 
+<span class="expandable-toggle" onclick="toggleExpandableContent('lingram')">[answer]</span>
+<div id="lingram" class="expandable-content" style="color: #0000A0;">
+<p>  
+See <a href="Gram-schmidt.pdf" target="_blank" rel="noopener noreferrer">here</a> for the solution. In summary, two of the eigenvalues \(\lambda_1\) and \(\lambda_2\) are <i>degenerate</i>, and their corresponding eigenvectors \(\vec{v}_1\) and \(\vec{v}_2\) are found to not be orthogonal. Meanwhile, both \(\vec{v}_1\) and \(\vec{v}_2\) <i>are</i> orthogonal to \(\vec{v}_3\). This is consistent with the claim made in problem 22, since that statement was restricted to non-degenerate eigenvalues. To orthogonalize the eigenvectors \(\vec{v}_1\) and \(\vec{v}_2\), the so-called Gram-Schmidt procedure is used. Griffiths notes that this procedure rarely needs to be carried out in practice, but that it can be done in principle. 
 </p>
 </div>
 </li>
