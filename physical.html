@@ -3511,6 +3511,44 @@ p(x,y,z) &= \frac{j\omega \rho_0}{2\pi}\iint_{-\infty}^\infty \frac{e^{-jkR}}{R}
 \end{align*}
 where \(R = \sqrt{(x-x_0)^2 + (y-y_0)^2 +z^2}\). Note that the contour integral symbol \(\oint\) denoting "integral over a closed surface" is abandoned because there is no sound incident on the surface infinitely far away. (This relates to the <i>Sommerfeld radiation condition</i>). 
 </p>
+</div>
+</li>
+
+<li> Use the Rayleigh integral for a velocity source, Eq. (\ref{Rayleigh integral}) to calculate the on-axis (\(x=y=0\)) field due to a uniform circular piston of radius \(a\).
+<span class="expandable-toggle" onclick="toggleExpandableContent('rayleighintprob1')">[answer]</span>
+<div id="rayleighintprob1" class="expandable-content" style="color: #0000A0;">
+<p>  
+Setting \(x = y =0\) in Cartesian coordinates corresponds to setting \(\sigma=0\) in cylindrical coordinates in the Rayleigh integral, Eq. (\ref{Rayleigh integral}), and thus \(R = \sqrt{\sigma_0^2 + z^2}\). Also, since the field is axisymmetric, \(u^{(z)}(\vec{r}_0) = u^{(z)}(\sigma_0)\). Eq. (\ref{Rayleigh integral}) therefore becomes
+\begin{align*}
+p(0,z) &= \frac{j\omega \rho_0}{2\pi}\int_{0}^{2\pi}\!\! \int_{0}^{\infty} \frac{e^{-jkR}}{R}  u^{(z)}(\sigma_0) \sigma_0 d\sigma_0 d\theta \\
+&= \frac{jk\rho_0c_0u_0}{2\pi}\int_{0}^{2\pi}\!\! \int_{0}^{a} \frac{e^{-jk\sqrt{\sigma_0^2 + z^2}}}{\sqrt{\sigma_0^2 + z^2}}  \sigma_0 d\sigma_0 d\theta\,.
+\end{align*}
+The radial integral contains no \(\theta\) dependence. Thus
+\begin{align*}
+p(0,z) &= jk\rho_0c_0u_0\int_{0}^{a} \frac{e^{-jk\sqrt{\sigma_0^2 + z^2}}}{\sqrt{\sigma_0^2 + z^2}}  \sigma_0 d\sigma_0 \,.
+\end{align*}
+Letting \(s = \sqrt{\sigma_0^2 + z^2}\) and thus \(ds = \sigma_0 d\sigma_0/\sqrt{\sigma_0^2 + z^2}\), the radial integral is evaluated:
+\begin{align*}
+p(0,z) &= jk\rho_0c_0u_0\int_{z}^{\sqrt{a^2 + z^2}} e^{-jks} ds \\
+&= -\rho_0c_0 u_0 \exp(-jks)\bigg\rvert_{z}^{\sqrt{a^2+z^2}}\\
+&= \rho_0c_0 u_0 [\exp(-jkz) - \exp(-jk\sqrt{a^2+z^2})]\,. 
+\end{align*}
+The above can be factorized as
+\begin{align*}
+p(0,z) &= \rho_0c_0 u_0 \exp\bigg[\frac{jk}{2}(-z - \sqrt{a^2+z^2})\bigg] \bigg\lbrace\exp\bigg[\frac{jk}{2}(-z + \sqrt{a^2+z^2})\bigg] - \exp\bigg[\frac{jk}{2}(z - \sqrt{a^2+z^2})\bigg]\bigg\rbrace\,. 
+\end{align*}
+Recalling that \((e^{jx}-e^{-jx})/2j = \sin x\), the above becomes
+\begin{align*}
+p(0,z) &= 2j\rho_0c_0 u_0  \exp[-jk(z + \sqrt{a^2+z^2})/2] \sin[k(\sqrt{a^2+z^2} - z)/2] \,. 
+\end{align*}
+The magnitude of this expression is 
+\begin{align*}
+|p(0,z)| &= 2\rho_0c_0 u_0 \big|\sin[k(\sqrt{a^2+z^2}-z)/2]\big| \,. 
+\end{align*}
+</p>
+</div>
+</li>
+
 
 <li>&#9784; Derive the Rayleigh integral of the <i>second</i> kind, 
 \begin{align}\label{Rayleigh integral 2}\tag{16}
@@ -3640,7 +3678,7 @@ D(\theta) &= \frac{\hat{u}_{0,H}(\kappa)}{\hat{u}_{0,H}(0)}
 </div>
 </li>
 
-<li>Find the pressure field and directivity due to a thin ring of pressure at \(z=0\) centered about the \(z\) axis, given by the condition 
+<li>Find the far-field pressure field and directivity due to a thin ring of pressure at \(z=0\) centered about the \(z\) axis, given by the condition 
 \begin{align*}
 u_0(\sigma) = u_0 w \delta(\sigma-a)
 \end{align*}
@@ -3671,6 +3709,38 @@ p(\vec{r}) &= \frac{j\omega \rho_0 Q_0}{2\pi}\frac{e^{-jkr}}{r} J_0 (ka\sin\thet
 </p>
 </div>
 </li>
+
+<li>Find the far-field pressure field and directivity due to a uniform circular piston at \(z=0\) centered about the \(z\) axis, given by the condition 
+\begin{align*}
+u_0(\sigma) = \begin{cases} u_0,\quad \sigma \in [0,a] \\
+0,\quad \sigma > a
+\end{cases}\,,
+\end{align*}
+where \(\sigma\) is defined as before.
+<span class="expandable-toggle" onclick="toggleExpandableContent('13sol7a')">[answer]</span>
+<div id="13sol7a" class="expandable-content" style="color: #0000A0;">
+<p> 
+Recall from the previous two questions that the pressure field is given by 
+\begin{align*}
+p(\vec{r}) &= \frac{j\omega \rho_0 Q_0}{2\pi}\frac{e^{-jkr}}{r}D(\theta) \\
+D(\theta) &= \frac{\hat{u}_{0,H}(\kappa)}{\hat{u}_{0,H}(0)}
+\end{align*}
+where the Hankle transform is \(\hat{u}_{0,H}(\kappa) = \int_{0}^{\infty}  J_0(\kappa \sigma_0)  u_0(\sigma_0) \,\sigma_0 \, d\sigma_0\). Letting \(u_0(\sigma) = u_0\) for \(\sigma \in [0,a]\) and \(0\) for \(\sigma > a\), the Hankle transform is calculated:
+\begin{align*}
+\hat{u}_{0,H}(\kappa) &=  u_0 \, \int_{0}^{a} J_0(\kappa \sigma_0) \,\sigma_0 \, d\sigma_0\\
+&= u_0 a^2 \frac{J_1(\kappa a)}{\kappa a}\,.   
+\end{align*}
+Since \(\lim_{x\to 0} J_1(x)/x = 1/2\), \(\hat{u}_{0,H}(0) = u_0 a^2/2\). So the far-field directivity is given by 
+\[D(\theta) = \frac{2J_1(\kappa a)}{\kappa a} = \frac{2J_1(ka\sin\theta)}{ka\sin\theta} \,,\]
+and the pressure in the far field is 
+\begin{align*}
+p(\vec{r}) &= j\rho_0 u_0 \frac{ka^2}{2}\frac{e^{j(\omega t - kr)}}{r} \frac{2J_1(ka\sin\theta)}{ka\sin\theta}\,.
+\end{align*}
+</p>
+</div>
+</li>
+
+
 
 <li>&#9784; Obtain the Fresnel (paraxial) approximation of equation (\ref{Rayleigh integral}). The result is
 \begin{align}\label{Fresnel}\tag{18}
@@ -3829,6 +3899,14 @@ Babinet's principle says that "complementary diffracting objects have complement
 </div>
 </li>
 
+<li> Use the Fraunhofer approximation
+<span class="expandable-toggle" onclick="toggleExpandableContent('franquest')">[answer]</span>
+<div id="franquest" class="expandable-content" style="color: #0000A0;">
+<p>  
+Babinet's principle says that "complementary diffracting objects have complementary diffraction patterns" (Blackstock, page 484). For example, the complementary diffracting object of a finite disk of radius \(a\) in free space is a circular aperture of radius \(a\). Babitnet's principle says that the sum of the radiation patterns individually caused by the finite disk and the aperture must be the same as the radiation pattern of the beam in free space. 
+</p>
+</div>
+</li>
 
 </ol>
 </div>
