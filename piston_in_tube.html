@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Piston in rigid tube</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        tags: 'ams'
+      }
+    };
+  </script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        macros: {
+          Order: "{\\mathcal O}",
+          vec: ['\\boldsymbol{#1}', 1],
+          div: "{\\boldsymbol{\\nabla}\\cdot}",
+          grad: "{\\boldsymbol\\nabla}",
+          curl: "{\\boldsymbol\\nabla\\times}",
+          Laplacian: "{\\nabla^2}",
+          dAlambertian: "{\\Box^2}",
+          Order: "{\\mathcal O}",
+          T: "{^\\mathsf{T}}"
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      margin: 0 auto;
+      padding: 20px;
+      max-width: 1000px; 
+      background: linear-gradient(to bottom, #0907799a, #c3470974);
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      font-family: Arial, sans-serif;
+      height: 100%;
+      line-height: 1.5;
+      }
+
+    .textbox {
+      background-color: rgba(255, 253, 230, 0.866);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .image-gallery {
+      display: flex;
+      justify-content: center; /* Center the images horizontally */
+      flex-wrap: wrap; /* Allow images to wrap to the next line if needed */
+}
+
+    .image-gallery img {
+      border-radius: 10px;
+      max-width: 55%;
+      height: auto;
+      margin: 0 10px 20px 10px; /* Add margin to separate the images */
+}
+  </style>
+</head>
+<body>
+<div class="textbox">
+<h1>Piston in rigid tube</h1>
+<p>This problem was worked out by Dr. Hamilton in Acoustics II, while covering waveguides (Ch. 12 of <i>Fundamentals of Physical Acoustics</i> by Blackstock). Note the following differences between my work below and Dr. Hamilton's: </p>
+<ul>
+<li>In class, \(a\) was the radius of the larger cylinder with rigid boundary conditions, while \(b\) was the radius of the piston. In my work, the meaning of these letters is flipped, i.e., \(a\) is the radius of the piston, while \(b\) is the radius of the larger cylinder. </li>
+<li>Dr. Hamilton worked it out in the \(j\omega t\) time convention; my work is in the \(-i\omega t\) convention.</li>
+<li>I am skeptical of the validity of the Fourier-Bessel series for \(r > a\), so I perform sanity checks. <i>TL;DR: Everything turns out to be in order.</i></li>
+</ul>
+
+<p>For a treatment of this problem more along the lines of Dr. Hamilton's presentation, see problem 3 of <a href="https://chiragokani.github.io/quals/physical.html#12" target="_blank" rel="noopener noreferrer">chapter 12 of my physical acoustics quals review webpage.</a>
+</p>
+<p><i>Contents:</i></p>
+<ol>
+<li><a href="#1">Problem statement</a></li>
+<li><a href="#2">Solution</a></li>
+<li><a href="#3">Sanity checks</a></li>
+<li><a href="#4">Plot of field</a></li>
+<!--<li><a href="#5">Two lingering questions</a></li>-->
+</ol>	
+</div>
+
+<div class="textbox"> <h2 id="1">Problem statement</h2>
+<p>Solve the wave equation for the pressure field radiated by a uniform circular velocity source of radius \(a\) positioned with its center on the axis of a rigid cylindrical tube  of radius \(b\). </p>
+<div class="image-gallery"><img src="fig_piston-in-tube.svg"/></div>
+<p>The source conditions at \(z=0\) are
+\begin{alignat*}{2}
+u^{(z)} &= u_0 e^{-i\omega t},\quad &&r\in [0,a]\\
+u^{(z)} &= 0,\quad &&r\in (a,b]
+\end{alignat*}
+and \(\partial p/\partial r = 0\) at \(r=b\) for all \(z\). Note that 
+\begin{equation}
+\int_0^1 J_m(\alpha'_{mn} x )J_m(\alpha'_{mn'} x) \,x\, dx = \frac{1}{2}[1-(m/\alpha'_{mn})^2] J^2_m(\alpha'_{mn'}) \delta_{nn'} \label{orthogonalityint}\tag{i}
+\end{equation}
+is the relevant orthogonality integral (which can be found in J. D. Jackson's <i>Classical Electrodynamics</i>, 1st ed., problem 3.8).</p>
+</div>
+
+<div class="textbox"><h2 id="2">Solution</h2>
+<p>First of all, there should be no dependence on \(\theta\), because the piston is positioned on-axis. Thus, the azimuthal index \(m\) is set to \(0\).</p> 
+<p>Since \(\partial p/\partial r = 0\) at \(r=b\), 
+\begin{align*}
+J'_0(k_r b) = 0 \, \implies \, k_r = \alpha'_{0n}/b\,.
+\end{align*}
+Thus, \(k_z = \beta_n = \sqrt{(\omega/c_0)^2- (\alpha'_{0n}/b)^2}\), and the general solution to the wave equation is 
+\begin{equation} \label{general solution}\tag{ii}
+p(r,z,t) = \sum_{n=1}^\infty  A_n J_0(\alpha'_{0n}r/b) e^{i(\beta_n z- \omega t)}\,.
+\end{equation}
+</p>
+<p> Meanwhile, to satisfy the source condition at \(z = 0\), the momentum equation \(u^{(z)} = (i\omega \rho_0)^{-1}{\partial p}/{\partial z}\) is invoked and set equal to the source condition:
+\begin{align}
+\frac{1}{\rho_0 c_0 k}\sum_{n=1}^\infty  A_n \beta_n J_0(\alpha'_{0n} r/b) e^{-i{\omega t}}= \begin{cases}
+u_0 e^{-i\omega t},\quad &r\in [0,a]\\
+0,\quad & r\in (a,b]
+\end{cases}\,.\tag{iii}\label{sldfkjlkjkljlk}
+\end{align}
+</p>
+<p>The orthogonality relation given by Eq. \eqref{orthogonalityint} is now used to find the expansion coefficients \(A_n\). Letting \(x = r/b\) and thus \(dx = dr/b\), the orthogonality relation becomes
+\[\int_0^b J_m(\alpha'_{mn} r/b)J_m(\alpha'_{mn'} r/b) r\, dr = \frac{b^2}{2}[1-(m/\alpha'_{mn})^2] J^2_m(\alpha'_{mn'}) \delta_{nn'}\,,\]
+which for \(m=0\) reads
+\begin{equation}\label{orthogonalityint'}\tag{iv}
+\int_0^b J_0(\alpha'_{0n} r/b)J_0(\alpha'_{0n'} r/b) r\, dr = \frac{b^2}{2} J^2_0(\alpha'_{0n'}) \delta_{nn'} \,.
+\end{equation}
+Multiplying both sides of Eq. \eqref{sldfkjlkjkljlk} by \(J_0(\alpha'_{0n'} r/b) r dr\) gives
+\begin{align*}
+\frac{1}{\rho_0 c_0 k}\sum_{n=1}^\infty \beta_n A_n J_0(\alpha'_{0n} r/b)J_0(\alpha'_{0n'} r/b) r dr  = \begin{cases}
+u_0 J_0(\alpha'_{0n'} r/b) r dr,\quad &r\in [0,a]\\
+0,\quad & r\in (a,b]
+\end{cases}\,,
+\end{align*}
+where the \(e^{-i\omega t}\) time dependence has been suppressed. Integrating from \(0\) to \(b\) gives
+\begin{align*}
+\frac{1}{\rho_0 c_0 k}\sum_{n=1}^\infty \beta_n A_n \int_{0}^{b} J_0(\alpha'_{0n} r/b)J_0(\alpha'_{0n'} r/b) r dr  &= 
+u_0 \int_{0}^{a} J_0(\alpha'_{0n'} r/b) r dr\end{align*}
+Eq. \eqref{orthogonalityint'} is used to integrate the left-hand side, and the recursion relation given by equation (11-A-24c) in Blackstock's book is used to integrate the right-hand side by setting \(v = r/b\) and \(dv = dr/b\):
+\begin{align*}
+\frac{b^2}{\rho_0 c_0 k}\sum_{n'=1}^\infty \beta_n A_n \frac{1}{2} J_0^2(\alpha'_{0n'}) \delta_{nn'}  &= u_0 ({b}/{\alpha'_{0n'}})^2  v J_1(v)\bigg\rvert_{v=0}^{v=\alpha'_{0n'}a/b}\\
+\frac{b^2}{2\rho_0 c_0} \frac{\beta_n}{k} A_n J_0^2(\alpha'_{0n})  &=u_0 \, ab \, \frac{1}{\alpha'_{0n}} J_1(\alpha'_{0n}a/b)\,
+\end{align*}
+Solving for \(A_n\) results in
+\begin{equation}\label{An}\tag{v}
+A_n  = \rho_0 c_0 u_0 \, \frac{a}{b}\,  \frac{2k}{\beta_n\alpha'_{0n}}\,   \frac{J_1(\alpha'_{0n}a/b)}{J_0^2(\alpha'_{0n}) }\,.
+\end{equation}
+Insertion of Eq. \eqref{An} into Eq. \eqref{general solution} results in the solution to the wave equation,
+\begin{equation}\label{solution}\tag{vi}
+p(r,z,t) = \rho_0 c_0 u_0\, 2k \, \frac{a}{b} \sum_{n = 1}^\infty \,  \frac{1}{\beta_n\alpha'_{0n}}\,  \frac{J_1(\alpha'_{0n}a/b)}{J_0^2(\alpha'_{0n}) }\, J_0(\alpha'_{0n}r/b)\, e^{i(\beta_n z- \omega t)}\,,
+\end{equation}
+where \(\beta_n = \sqrt{(\omega/c_0)^2- (\alpha'_{0n}/b)^2}\).
+</p>
+<p>I confirmed with Dr. Hamilton that the above solution matches the one presented in class (only with \(a\) and \(b\) flip-flopped, as noted above). </p>
+</div>
+
+<div class="textbox"><h2 id="3">Sanity checks</h2>
+<p>To check the validity of Eq. \eqref{solution}, several limiting cases are studied. </p>
+<ol>
+<li><p><i>Does Eq. \eqref{solution} satisfy the radial boundary condition, i.e., does \(\partial p/\partial r\rvert_{r=b}=0\)?</i></p>
+<p>This is easy to check by differentiating Eq. \eqref{solution} with respect to \(r\), setting \(r=b\), and noting that \(J_0'(\alpha'_{0n}) = 0\). Thus all the terms in the infinite series vanish, and thus the radial boundary condition has been satisfied. </p>
+</li>
+<li><p><i>Does Eq. \eqref{solution} recover the velocity source condition?</i></p> 
+<p>To see if the solution recovers the velocity source condition at \(z= 0\), the  expansion coefficients given by Eq. \eqref{An} are inserted into into the velocity source condition given by Eq. \eqref{sldfkjlkjkljlk}, and the left- and right-hand-sides are compared. After canceling common terms, one obtains
+\begin{align}
+2 \frac{a}{b}\sum_{n=1}^\infty \frac{1}{\alpha'_{0n}}\,   \frac{J_1(\alpha'_{0n}a/b)}{J_0^2(\alpha'_{0n}) } J_0(\alpha'_{0n} r/b) \stackrel{?}{=} \begin{cases}
+1,\quad &r\in [0,a]\\
+0,\quad & r\in (a,b]
+\end{cases}\,.
+\end{align}
+To check this result, the above equation is nondimensionalized by defining \(\gamma \equiv a/b\) and \(R \equiv r/a\):
+\begin{align}\label{verifyit}\tag{vii}
+2 \gamma \sum_{n=1}^\infty \frac{1}{\alpha'_{0n}}\,   \frac{J_1(\alpha'_{0n}\gamma)}{J_0^2(\alpha'_{0n}) } J_0(\alpha'_{0n} \gamma R) \stackrel{?}{=} \begin{cases}
+1,\quad & R \in [0,1]\\
+0,\quad & R\in (1,1/\gamma]
+\end{cases}\,.
+\end{align}  
+</p>
+<p>See <a href="sanity_check_2.m" target="_blank" rel="noopener noreferrer">here</a> for my code that shows that the LHS and RHS of Eq. \eqref{verifyit} are equal. The roots of the derivative of the \(0^\mathrm{th}\) order Bessel function are given by a user-defined function by Jack Hallveld (and I verified the first few roots of \(J_0\) by comparing with those listed on page 393 of <i>Fundamentals of Physical Acoustics</i>).</p> 
+
+<p>As an example, for \(\gamma = a/b = 1/2\) and truncation at the first 40 terms in the infinite sum, one obtains </p>
+<div class="image-gallery"><img src="first_40_terms.png"/></div>
+</li>
+</ol>
+</div>
+
+<div class="textbox"><h2 id="4">Plot of field</h2>
+<p>Identify the following dimensionless variables that are conventionally used to nondimensionalize unfocused sound beams: \(P \equiv p/\rho_0c_0u_0\), \(\gamma \equiv a/b\), \(R \equiv r/a\), \(Z \equiv z/z_0\) (where \(z_0 = ka^2/2\) is the Rayleigh distance), \(K \equiv ka\), \(B_n \equiv \beta_n a = \sqrt{K^2 - (\gamma\alpha_{0n}')^2}\), and \(\theta = \omega t\). Then Eq. \eqref{general solution} becomes
+\begin{equation}\label{virtualsol'}\tag{viii}
+P(R,Z) = 2K\gamma \sum_{n=1}^{\infty} \frac{1}{B_n \alpha_{0n}'} \frac{J_1(\alpha_{0n}'\gamma)}{J_0^2(\alpha_{0n}')} J_0(\alpha_{0n}'\gamma R)e^{i(KZB_n/2-\theta)}\,.
+\end{equation}
+Setting \(\gamma = 1/10\) and \(ka = 100\), the magnitude of Eq. \eqref{virtualsol'} at (\(z=z_0\)) is plotted below and compared with the magnitude of the <a href="https://chiragokani.github.io/quals/physical.html#13-14" target="_blank" rel="noopener noreferrer">far-field directivity of a uniform circular piston (see problem 13):</a>
+\[|p(r_\circ,\theta_\circ)| = \rho_0c_0u_0 \frac{ka^2}{2} \frac{1}{r_\circ} \frac{2J_1(ka\sin\theta)}{ka\sin\theta}\,, \]
+where \(r_\circ\) is the <i>spherical radial coordinate</i>, equal to \(\sqrt{r^2 + z^2}\) in cylindrical coordinates, and where \(\theta_\circ\) is the <i>spherical polar coordinate</i>, and thus \(\sin\theta_\circ = r/\sqrt{r^2 + z^2}\) in cylindrical coordinates. Nondimensionalized, the far-field pressure reads
+\[|P(R, Z)| = \frac{1}{\sqrt{R^2 + K^2Z^2/4}} \bigg|\frac{J_1(KR/\sqrt{R^2 + K^2Z^2/4})}{R/\sqrt{R^2 + K^2 Z^2/4}}\bigg|\,.\]
+The plot below is generated at \(z = 1.5 z_0\):
+<div class="image-gallery"><img src="radial_plot_of_field.png"/></div>
+</p>
+
+<p>Also plotted is the <a href="https://chiragokani.github.io/quals/physical.html#13-14" target="_blank" rel="noopener noreferrer">analytical solution of the Helmholtz equation (see problem 7)</a> for the on-axis pressure magnitude due to a uniform circular piston:
+\[|p(0,z)| = 2\rho_0c_0 u_0\, \big|\!\sin[k(\sqrt{a^2+z^2}-z)/2]\big| \,. \]
+Nondimensionalized, the on-axis pressure magnitude reads
+\[|P(0,Z)| = 2\,\big|\!\sin[(K\sqrt{1+K^2Z^2/4}-K^2Z/2)/2]\big| \,: \]
+</p>
+<div class="image-gallery"><img src="axial_plot_of_field.png"/></div>
+</div>
+
+<!--
+<div class="textbox"><h2 id="5">Two lingering questions</h2>
+<ol>
+<li><i>Why does taking the limit as \(a/b \to 0\) of Eq. \eqref{solution} (corresponding to the rigid tube being removed) and gives a zero pressure, as shown below? </i>
+
+<p>The limit is assessed using the small-argument asymptotic form of the Bessel function for non-negative integer orders \(\alpha\)
+\begin{equation}\label{Bessel small}
+J_\alpha(z) \sim \frac{1}{\Gamma(\alpha + 1)} (z/2)^\alpha \,, 
+\end{equation}
+where \(\Gamma(n) = (n-1)!\) is the Gamma function. Thus 
+\[J_1(\alpha_{0n}' a/b) \sim  \frac{1}{\Gamma(2)} (\alpha_{0n}' a/2b) = \frac{\alpha_{0n}' a}{2b}\,,\]
+which drives the solution to \(0\) (Note that \(J_0(\alpha_{0n}r/b) \sim 1\,\))</p>
+
+<p>Meanwhile, \[\lim_{b\to\infty} \beta_n  = \lim_{b\to\infty}\sqrt{(\omega/c_0)^2- (\alpha_{0n}/b)^2} = k\,,\] and thus \(\lim_{b\to\infty} e^{i\beta_n z} =  e^{ikz}\), which means that the magnitude of Eq. \eqref{general solution} has no dependence on \(z\) in the limit that \(b \to \infty\), which obviously is not the case for a diffracting sound beam.</p></li>
+
+<li><p>I am running into trouble performing the Fourier-Bessel series \[f(x) = \sum_{n=1}^\infty C_n J_0(\alpha_{0n}x),\] which is the same as the series used in the problem at hand, only involving the zeros of \(J_0\), not \(J_0'\). Specifically, the series converges for \(a < x < b\), but not for \(x > b\). 
+</p> 
+
+
+</li>
+</ol>
+
+\[f(x) = \sum_{n=1}^\infty C_n J_0(\alpha_{0n}'x)\]
+for the function 
+\[f(x) = \begin{cases}
+1,\quad &x\in [0,a]\\
+0,\quad & x\in (a,b]
+\end{cases}\,.\]
+<i>The subtle point with these problems is that \(b\) must be finite. </i>
+</p>
+
+<p>Multiplying \(f(x) = \sum_{n=1}^\infty C_n J_0(\alpha_{0n}'x)\) by \(x\,J_0(\alpha_{0n'}'x)\,dx\) on both sides and integrating from \(0\) to \(b\) gives 
+\begin{equation}\label{step}\tag{a}
+\int_{0}^{a} x\, J_0(\alpha_{0n}'x)\,f(x)\,dx = \sum_{n=1}^\infty C_n \int_{0}^{1} x\,J_0(\alpha_{0n'}'x)\, J_0(\alpha_{0n}'x)\, dx \,.
+\end{equation} 
+Invoking the orthogonality of Bessel functions given by Eq. \eqref{orthogonalityint}, Eq. \eqref{step} is solved for \(C_n\): 
+\begin{align}\label{expansion coeff}\tag{b}
+C_n &= \frac{2}{J^2_{0} (\alpha_{0n'}')} \int_{0}^{1} x\, J_0(\alpha_{0n}'x)\,f(x)\,dx  \,.
+\end{align}
+Using the given function \(f(x) = 1, x\in[0,a]\) and \(0, x\in (a,b]\), Eq. \eqref{expansion coeff} becomes 
+\begin{align*}
+C_n &= \frac{2}{J_{0}^2 (\alpha_{0n}')} \int_{0}^{1} x\, J_0(\alpha_{0n}'x)\,dx = 2\frac{J_1(\alpha_{0n}')}{\alpha_{0n}'J_{0}^2(\alpha_{0n}')}
+\end{align*}
+The Fourier-Bessel series is thus 
+\begin{equation}\label{FBex}\tag{c}
+f(x) = 2 \sum_{n=1}^{\infty} \frac{J_1(\alpha_{0n}')}{\alpha_{0n}'J_{0}^2 (\alpha_{0n}')} J_0(\alpha_{0n}'x)\,.
+\end{equation}
+To check this result, the left- and right-hand sides of Eq. \eqref{FBex} are plotted:</p>
+<img src="back_to_basics_first_50_terms.png"/>
+<p>The left- and right-hand sides are clearly not equal. Thus there is either an error in my computation of Eq. \eqref{FBex}, or Eq. \eqref{orthogonalityint} is incorrect.</p>
+
+
+
+</div>
+-->
+
+<!--
+<div class="image-gallery">
+<img src="bat2.jpg" alt="Bat 2">
+<img src="bat3.jpg" alt="Bat 3">
+<img src="bat1.jpg" alt="Bat 1">
+</div>
+
+
+<div class="textbox">
+<p style="font-size:11px">
+Chirag Gokani <br>
+<a href="mailto:chiragokani@gmail.com" target="_blank" rel="noopener noreferrer">chiragokani@gmail.com</a> | <a href="https://chiragokani.github.io" target="_blank" rel="noopener noreferrer">page</a> <br>
+<a href="https://www.texasacoustics.org/" target="_blank" rel="noopener noreferrer">PhD student, Acoustics</a> | <a href="https://www.utexas.edu/" target="_blank" rel="noopener noreferrer">University of Texas at Austin</a> <br>
+</p>
+</div>
+-->
+</body>
+</html>
+
